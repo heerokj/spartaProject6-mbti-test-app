@@ -1,6 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { API_URL } from "../api/auth";
 import axios from "axios";
 
@@ -8,13 +8,24 @@ const Signup = () => {
   const [id, setId] = useState(""); //오류: ()안에 초기값 안넣어줬음
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
+  const navigate = useNavigate();
 
   const register = async (userData) => {
-    await axios.post(`${API_URL}/register`, {
-      id: userData.id,
-      password: userData.password,
-      nickname: userData.nickname,
-    });
+    try {
+      const response = await axios.post(`${API_URL}/register`, {
+        id: userData.id,
+        password: userData.password,
+        nickname: userData.nickname,
+      });
+      const data = response.data;
+
+      if (data.success) {
+        alert("회원가입이 완료되었습니다. 로그인페이지로 이동합니다.");
+        navigate("/login");
+      }
+    } catch (error) {
+      console.log("회원가입 에러..", error);
+    }
   };
   const mutation = useMutation({
     mutationFn: register,
