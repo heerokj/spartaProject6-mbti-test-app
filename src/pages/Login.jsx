@@ -1,7 +1,57 @@
-import React from "react";
+import { useMutation } from "@tanstack/react-query";
+import axios from "axios";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { API_URL } from "../api/auth";
 
 const Login = () => {
-  return <div>Login</div>;
+  const [id, setId] = useState(""); //오류: ()안에 초기값 안넣어줬음
+  const [password, setPassword] = useState("");
+  // const navigate = useNavigate();
+
+  const mutation = useMutation({
+    mutationFn: login,
+  });
+
+  const login = async (userData) => {
+    const response = await axios.post(`${API_URL}/login`, {
+      id: userData.id,
+      password: userData.password,
+    });
+
+    return response.data;
+  };
+  return (
+    <>
+      <h1>로그인</h1>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          mutation.mutate({
+            id,
+            password,
+          });
+        }}
+      >
+        <input
+          type="text"
+          value={id}
+          onChange={(e) => {
+            setId(e.target.value);
+          }}
+        />
+        <input
+          type="text"
+          value={password}
+          onChange={(e) => {
+            setPassword(e.target.value);
+          }}
+        />
+        <button type="submit">로그인</button>
+      </form>
+      <span>계정이 없으신가요?</span> <Link to="/signup">회원가입</Link>
+    </>
+  );
 };
 
 export default Login;

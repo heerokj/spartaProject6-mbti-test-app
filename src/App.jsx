@@ -1,35 +1,16 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Router from "./shared/Router"; //오류 :import 시 내가 만든걸로!!
 
-function App() {
-  const [count, setCount] = useState(0)
-
+//오류: 생성하고 주입을 안했었음
+const queryClient = new QueryClient(); //오류 : useQuer ~~ 이걸로 사용했음..
+const App = () => {
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <QueryClientProvider client={queryClient}>
+        <Router />
+      </QueryClientProvider>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
