@@ -9,18 +9,17 @@ const Login = () => {
   const [password, setPassword] = useState("");
   // const navigate = useNavigate();
 
-  const mutation = useMutation({
-    mutationFn: login,
-  });
-
   const login = async (userData) => {
     const response = await axios.post(`${API_URL}/login`, {
       id: userData.id,
       password: userData.password,
     });
-
     return response.data;
   };
+
+  const mutation = useMutation({
+    mutationFn: login,
+  });
   return (
     <>
       <h1>로그인</h1>

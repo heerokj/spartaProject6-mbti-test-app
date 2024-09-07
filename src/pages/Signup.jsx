@@ -9,10 +9,6 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [nickname, setNickname] = useState("");
 
-  const mutation = useMutation({
-    mutationFn: register,
-  });
-
   const register = async (userData) => {
     await axios.post(`${API_URL}/register`, {
       id: userData.id,
@@ -20,6 +16,9 @@ const Signup = () => {
       nickname: userData.nickname,
     });
   };
+  const mutation = useMutation({
+    mutationFn: register,
+  });
 
   return (
     <div>
