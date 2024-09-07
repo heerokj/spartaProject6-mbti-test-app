@@ -16,7 +16,7 @@ const PrivateRoute = ({ element: Element, ...rest }) => {
 
 const PublicRoute = ({ element: Element, ...rest }) => {
   const { isAuthenticated } = useContext(AuthContext);
-  return !isAuthenticated ? <Element {...rest} /> : <Navigate to="/mypage" />;
+  return !isAuthenticated ? <Element {...rest} /> : <Navigate to="/" />;
 };
 const Router = () => {
   return (

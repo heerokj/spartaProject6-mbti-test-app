@@ -12,6 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   const handleSubmit = async (userData) => {
+    //userData가 꼭있어야 하나??
     try {
       const response = await axios.post(`${API_URL}/login`, {
         id: userData.id,

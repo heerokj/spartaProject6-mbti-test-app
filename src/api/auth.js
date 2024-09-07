@@ -1,3 +1,5 @@
+import axios from "axios";
+
 export const API_URL = "https://moneyfulpublicpolicy.co.kr";
 
 //회원가입
