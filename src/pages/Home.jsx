@@ -1,11 +1,6 @@
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthContext";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-const Home = () => {
-  const { isAuthenticated } = useContext(AuthContext);
-  const navigate = useNavigate();
-
+const Home = ({ user }) => {
   return (
     <div>
       <h1>MBTI 테스트</h1>
@@ -15,17 +10,10 @@ const Home = () => {
         <div>설명2</div>
         <div>설명3</div>
       </div>
-      {isAuthenticated ? (
-        <Link to="/testPage">내 성격 알아보러 가기</Link>
+      {user ? (
+        <Link to="/test">테스트하러가기</Link>
       ) : (
-        <button
-          onClick={() => {
-            alert("로그인이 필요합니다. 로그인 페이지로 이동합니다.");
-            navigate("/login");
-          }}
-        >
-          내 성격 알아보러 가기
-        </button>
+        <Link to="/login">로그인하기</Link>
       )}
     </div>
   );

@@ -4,13 +4,15 @@ import TestForm from "../components/TestForm";
 import { calculateMBTI } from "../utils/mbtiCalculator";
 
 const TestPage = ({ user }) => {
+  const { userId, nickname } = user;
+
   const navigate = useNavigate();
 
   const handleTestSubmit = async (answers) => {
     const result = calculateMBTI(answers);
     const resultData = {
-      id: user.id,
-      nickname: user.nickname,
+      id: userId,
+      nickname: nickname,
       result,
       answers,
       date: new Date().toISOString(),

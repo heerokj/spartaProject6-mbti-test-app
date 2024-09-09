@@ -1,16 +1,17 @@
-import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
 
-const Layout = () => {
-  const { isAuthenticated, logout } = useContext(AuthContext);
+const Layout = ({ user, setUser }) => {
   const navigate = useNavigate();
+
+  // 이곳에서 로그인 하지 않은 사용자를 login 페이지로 보내주기
+  // useEffect(() => {
+  // }, []);
 
   //로그아웃
   const handleLogout = () => {
-    logout();
     navigate("/");
   };
+
   return (
     <div>
       <header>
@@ -19,10 +20,10 @@ const Layout = () => {
             <Link to="/">홈</Link>
           </div>
           <div>
-            {isAuthenticated ? (
+            {user ? (
               <>
-                <Link to="/TestPage">테스트</Link>
-                <Link to="/TestResultPage">테스트결과</Link>
+                <Link to="/test">테스트</Link>
+                <Link to="/results">테스트결과</Link>
                 <Link to="/profile">프로필</Link>
                 <button onClick={handleLogout}>로그아웃</button>
               </>
@@ -35,6 +36,8 @@ const Layout = () => {
           </div>
         </nav>
       </header>
+      {/* //? */}
+      <main className="container mx-auto pt-10 main"></main>
     </div>
   );
 };

@@ -2,7 +2,8 @@ import { useState } from "react";
 import { questions } from "../data/questions";
 
 const TestForm = ({ onSubmit }) => {
-  //NOTE - props로 줬는데 왜 빨간줄...? 무슨뜻??  props의 유형을 명시적으로 정의안해서??
+  //TODO - 질문하기
+  //props로 줬는데 왜 빨간줄...? 무슨뜻??  props의 유형을 명시적으로 정의안해서??
 
   //길이가 questions.length인 빈 배열을 생성 &null로 초기화
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));

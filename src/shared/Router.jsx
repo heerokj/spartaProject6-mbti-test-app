@@ -1,48 +1,51 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import Layout from "../components/Layout";
-import { AuthContext, AuthProvider } from "../context/AuthContext";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useState } from "react";
+
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
-import Profile from "../pages/Profile";
 import TestPage from "../pages/TestPage";
+import ProtectedRoute from "../components/ProtectedRoute";
+import Profile from "../pages/Profile";
 import TestResultPage from "../pages/TestResultPage";
-import { useContext } from "react";
+import Layout from "../components/Layout";
 
-const PrivateRoute = ({ element: Element, ...rest }) => {
-  const { isAuthenticated } = useContext(AuthContext);
-  return isAuthenticated ? <Element {...rest} /> : <Navigate to="/login" />;
-};
-
-const PublicRoute = ({ element: Element, ...rest }) => {
-  const { isAuthenticated } = useContext(AuthContext);
-  return !isAuthenticated ? <Element {...rest} /> : <Navigate to="/" />;
-};
 const Router = () => {
+  const [user, setUser] = useState(null);
   return (
     <>
-      <AuthProvider>
-        <BrowserRouter>
-          <Layout />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/login" element={<PublicRoute element={Login} />} />
-            <Route path="/signup" element={<PublicRoute element={Signup} />} />
-            <Route
-              path="/profile"
-              element={<PrivateRoute element={Profile} />}
-            />
-            <Route
-              path="/testPage"
-              element={<PrivateRoute element={TestPage} />}
-            />
-            <Route
-              path="/testResultPage"
-              element={<PrivateRoute element={TestResultPage} />}
-            />
-          </Routes>
-        </BrowserRouter>
-      </AuthProvider>
+      <BrowserRouter>
+        <Layout user={user} setUser={setUser} />
+        <Routes>
+          <Route path="/" element={<Home user={user} />} />
+          <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute user={user}>
+                <Profile user={user} setUser={setUser} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/test"
+            element={
+              <ProtectedRoute user={user}>
+                <TestPage user={user} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/results"
+            element={
+              <ProtectedRoute user={user}>
+                <TestResultPage user={user} />
+              </ProtectedRoute>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 };

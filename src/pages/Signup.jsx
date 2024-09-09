@@ -1,75 +1,39 @@
-import { useMutation } from "@tanstack/react-query";
-import { useState } from "react";
+import AuthForm from "../components/AuthForm";
 import { Link, useNavigate } from "react-router-dom";
-import { API_URL } from "../api/auth";
-import axios from "axios";
+import { useMutation } from "@tanstack/react-query";
+import { register } from "../api/auth";
 
 const Signup = () => {
-  const [id, setId] = useState(""); //오류: ()안에 초기값 안넣어줬음
-  const [password, setPassword] = useState("");
-  const [nickname, setNickname] = useState("");
   const navigate = useNavigate();
 
-  const register = async (userData) => {
-    try {
-      const response = await axios.post(`${API_URL}/register`, {
-        id: userData.id,
-        password: userData.password,
-        nickname: userData.nickname,
-      });
-      const data = response.data;
-
-      if (data.success) {
-        alert("회원가입이 완료되었습니다. 로그인페이지로 이동합니다.");
-        navigate("/login");
-      }
-    } catch (error) {
-      console.log("회원가입 에러..", error);
-    }
-  };
-  const mutation = useMutation({
+  const signUpMutation = useMutation({
     mutationFn: register,
+    onSuccess: () => {
+      alert("회원가입 완료되었습니다. 로그인페이지로 이동합니다.");
+      navigate("/login");
+    },
+    onError: (error) => {
+      alert(error, ": 회원가입에 실패했습니다. 다시 시도해주세요");
+    },
   });
 
+  //formData은 어디서온겨??
+  const handleSignUp = async (formData) => {
+    signUpMutation.mutate(formData);
+  };
+
   return (
-    <div>
-      <h1>회원가입</h1>
+    <>
       <div>
-        <input
-          type="text"
-          value={id}
-          onChange={(e) => {
-            setId(e.target.value);
-          }}
-        />
-        <input
-          type="text"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <input
-          type="text"
-          value={nickname}
-          onChange={(e) => {
-            setNickname(e.target.value);
-          }}
-        />
-        <button
-          onClick={() => {
-            mutation.mutate({
-              id,
-              password,
-              nickname,
-            });
-          }}
-        >
-          회원가입
-        </button>
+        <h1>회원가입</h1>
+        <AuthForm mode="signup" onSubmit={handleSignUp} />
+        <div>
+          <p>
+            이미 계정이 있으신가요? <Link to="/login">로그인</Link>
+          </p>
+        </div>
       </div>
-      <span>이미 계정이 있으신가요?</span> <Link to="/login">로그인</Link>
-    </div>
+    </>
   );
 };
 
