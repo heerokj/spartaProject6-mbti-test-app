@@ -1,22 +1,29 @@
 {
   "testResults": [
     {
-      "id": "heerok",
-      "date": "2024-09-09T15:08:40.386Z",
+      "id": "lalala",
+      "date": "2024-09-09T15:13:35.003Z",
+      "nickname": "히록",
+      "result": "ESTJ",
+      "visibility": true
+    },
+    {
+      "id": "hee",
+      "date": "2024-09-09T15:19:13.595Z",
+      "nickname": "히록",
+      "result": "INFP",
+      "visibility": true
+    },
+    {
+      "id": "rok",
+      "date": "2024-09-09T15:19:13.595Z",
       "nickname": "히록",
       "result": "INFP",
       "visibility": true
     },
     {
       "id": "heerok",
-      "date": "2024-09-09T15:09:40.214Z",
-      "nickname": "히록",
-      "result": "INFP",
-      "visibility": true
-    },
-    {
-      "id": "heerok",
-      "date": "2024-09-09T15:10:23.417Z",
+      "date": "2024-09-09T15:48:11.925Z",
       "nickname": "히록",
       "result": "INFP",
       "visibility": true

@@ -8,7 +8,6 @@ export const getTestResults = async () => {
 };
 
 export const createTestResult = async (resultData) => {
-  console.log("resultData==>", resultData);
   const response = await axios.post(`${API_URL}`, {
     date: resultData.date,
     id: resultData.id,
