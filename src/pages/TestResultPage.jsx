@@ -15,6 +15,9 @@ const TestResultPage = ({ user }) => {
   const myResult = results.filter((result) => {
     return result.id === user.userId;
   });
+  //TODO - 질문하기
+  //이런오류가 뜰때도 있고 안 뜰때도 있따.
+  //Cannot read properties of undefined (reading 'result')
   console.log(myResult);
 
   //테스트 결과 업데이트
@@ -30,7 +33,12 @@ const TestResultPage = ({ user }) => {
   return (
     <div>
       <h1>테스트 결과</h1>
-      <h1>{myResult[0].result}</h1>
+      {myResult.length > 0 ? (
+        <h1>{myResult[0]?.result}</h1>
+      ) : (
+        <p>결과를 찾을 수 없습니다..</p>
+      )}
+
       <TestResultList
         results={results}
         user={user}
