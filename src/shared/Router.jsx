@@ -9,6 +9,7 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import Profile from "../pages/Profile";
 import TestResultPage from "../pages/TestResultPage";
 import Layout from "../components/Layout";
+import TestResultPageList from "../pages/TestResultPageList";
 
 const Router = () => {
   const [user, setUser] = useState(null);
@@ -41,6 +42,14 @@ const Router = () => {
             element={
               <ProtectedRoute user={user}>
                 <TestResultPage user={user} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/resultsList"
+            element={
+              <ProtectedRoute user={user}>
+                <TestResultPageList user={user} />
               </ProtectedRoute>
             }
           />
