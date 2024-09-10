@@ -26,6 +26,10 @@ const Profile = ({ user, setUser }) => {
     setUser(UpdatedUser);
   };
 
+  // useEffect(() => {
+  //   getUserProfile(user);
+  // }, [user]);
+
   return (
     <div>
       <h1 className="text-2xl m-8 font-bold text-center">프로필 수정</h1>

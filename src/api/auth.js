@@ -34,8 +34,6 @@ export const getUserProfile = async ({ accessToken }) => {
 //프로필 수정
 export const updateProfile = async (formData) => {
   const { accessToken, nickname } = formData;
-  console.log("accessToken", accessToken);
-  console.log("nickname", nickname);
 
   const response = await axios.patch(
     `${API_URL}/profile`,
