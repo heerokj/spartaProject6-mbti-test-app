@@ -3,13 +3,13 @@ import { Link, useNavigate } from "react-router-dom";
 const Layout = ({ user, setUser }) => {
   const navigate = useNavigate();
 
-  // 이곳에서 로그인 하지 않은 사용자를 login 페이지로 보내주기
-  // useEffect(() => {
-  // }, []);
-
   //로그아웃
   const handleLogout = () => {
+    setUser(null);
+    // if (user === null) { ==>//문제 : setUser(null)로 상태를 변경한 직후에 바로 user 값을 확인하려고 하면, 상태가 즉시 반영되지 않음. React의 상태 업데이트는 비동기적으로 처리되기 때문에 setUser(null) 이후에 바로 user 값을 읽으면 여전히 이전 값이 반환됨
+    alert("로그아웃 되었습니다. 홈 페이지로 이동합니다.");
     navigate("/");
+    // }
   };
 
   return (

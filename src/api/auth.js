@@ -46,5 +46,12 @@ export const updateProfile = async (formData) => {
       },
     }
   );
+
+  if (response.data.success) {
+    alert("프로필이 업데이트 되었습니다.");
+  }
+  if (response.data.error) {
+    alert("프로필 업데이트에 실패했습니다.");
+  }
   return response.data;
 };

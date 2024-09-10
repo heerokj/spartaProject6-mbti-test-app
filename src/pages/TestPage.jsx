@@ -23,7 +23,7 @@ const TestPage = ({ user }) => {
   };
   return (
     <div>
-      <h1>MBTI 테스트</h1>
+      <h1 className="text-2xl m-8 font-bold text-center">MBTI 테스트</h1>
       <TestForm onSubmit={handleTestSubmit} />
     </div>
   );

@@ -2,9 +2,6 @@ import { useState } from "react";
 import { questions } from "../data/questions";
 
 const TestForm = ({ onSubmit }) => {
-  //TODO - 질문하기
-  //props로 줬는데 왜 빨간줄...? 무슨뜻??  props의 유형을 명시적으로 정의안해서??
-
   //길이가 questions.length인 빈 배열을 생성 &null로 초기화
   const [answers, setAnswers] = useState(Array(questions.length).fill(null));
 
@@ -22,10 +19,13 @@ const TestForm = ({ onSubmit }) => {
     onSubmit(answers);
   };
   return (
-    <>
-      <form onSubmit={TestSubmit}>
+    <div>
+      <form onSubmit={TestSubmit} className="grid gap-4 text-center ">
         {questions.map((q, index) => (
-          <div key={q.id} className="mb-4">
+          <div
+            key={q.id}
+            className="border border-gray-300 rounded-lg w-1/2 m-auto p-4"
+          >
             <p className="font-semibold">{q.question}</p>
             {q.options.map((option, i) => (
               <label key={i} className="block">
@@ -42,9 +42,14 @@ const TestForm = ({ onSubmit }) => {
             ))}
           </div>
         ))}
-        <button type="submit">제출하기</button>
+        <button
+          type="submit"
+          className="p-4 bg-blue-200 rounded-lg w-1/2 m-auto mb-8 mt-8"
+        >
+          제출하기
+        </button>
       </form>
-    </>
+    </div>
   );
 };
 

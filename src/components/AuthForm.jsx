@@ -8,7 +8,7 @@ const AuthForm = ({ mode, onSubmit }) => {
   });
   const { id, password, nickname } = formData;
 
-  //이해안감
+  // ??
   // 입력 값이 변경될 때마다 formData를 업데이트
   const handleChange = (e) => {
     setFormData({

@@ -1,5 +1,3 @@
-import React from "react";
-
 const TestResultList = ({ results, user, onUpdate, onDelete }) => {
   console.log("results==>", results);
   console.log("user==>", user);
@@ -7,7 +5,7 @@ const TestResultList = ({ results, user, onUpdate, onDelete }) => {
   console.log("onDelete==>", onDelete);
 
   return (
-    <div>
+    <div className="grid">
       {results.length > 0 ? (
         results.map((result) => {
           return (
@@ -18,7 +16,7 @@ const TestResultList = ({ results, user, onUpdate, onDelete }) => {
               </div>
               <div>
                 <h2>{result.result}</h2>
-                <span>{result.description}</span>
+                <span>{result?.description}</span>
               </div>
             </div>
           );

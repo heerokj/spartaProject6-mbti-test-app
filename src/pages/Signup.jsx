@@ -17,7 +17,7 @@ const Signup = () => {
     },
   });
 
-  //formData은 어디서온겨??
+  //formData??
   const handleSignUp = async (formData) => {
     signUpMutation.mutate(formData);
   };

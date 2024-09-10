@@ -24,7 +24,7 @@ const Home = ({ user }) => {
             다른 사람들이 어떻게 행동하는지 이해하는데 도움을 줄 수 있습니다.
           </h2>
         </div>
-        <div className="bg-white m-8 w-96 h-52 p-2 rounded-md">
+        <div className="bg-white m-8 w-96 h-52 p-2 ㅏㅕㅓrounded-md">
           <h3 className="my-4 font-bold text-xl">팀 평가</h3>
           <h2>
             팀 내에서 자신과 동료들의 성격을 이해하고 협력할 수 있는 방법을
