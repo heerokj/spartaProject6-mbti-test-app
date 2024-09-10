@@ -1,24 +1,18 @@
 import { useLocation } from "react-router-dom";
-import TestResultList from "../components/TestResultList";
+import TestResultItem from "../components/TestResultItem";
 
 const TestResultPageList = ({ user }) => {
   const location = useLocation();
   const myResult = location.state?.result;
 
-  //테스트 결과 업데이트
-  const handleUpdate = () => {};
-
-  //테스트 결과 삭제
-  const handleDelete = () => {};
   return (
-    <div>
+    <div className="grid w-2/3 m-auto ">
       <h1 className="text-2xl m-8 font-bold text-center">모든 테스트 결과</h1>
-      <TestResultList
-        results={myResult}
-        user={user}
-        onUpdate={handleUpdate}
-        onDelete={handleDelete}
-      />
+      {myResult
+        .filter((result) => result.visibility || result.userId === user.id)
+        .map((result) => (
+          <TestResultItem key={result.id} result={result} user={user} />
+        ))}
     </div>
   );
 };

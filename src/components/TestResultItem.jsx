@@ -1,7 +1,4 @@
-import {
-  deleteTestResult,
-  updateTestResultVisibility,
-} from "../api/testResults";
+import { deleteTestResult } from "../api/testResults";
 
 const mbtiDescriptions = {
   ISTJ: "책임감 있고 신뢰할 수 있으며, 전통적이고 실용적인 사고방식을 가지고 있습니다.",
@@ -22,59 +19,50 @@ const mbtiDescriptions = {
   ENTJ: "결단력 있고 목표 지향적이며, 리더십을 발휘합니다.",
 };
 
-const TestResultItem = ({ result, user, onUpdate, onDelete }) => {
-  const isOwner = result.userId === user.id;
-
-  const formattedDate = new Date(result.date).toLocaleString();
+const TestResultItem = ({ result, user }) => {
   const description =
     mbtiDescriptions[result.result] || "MBTI 유형 설명을 찾을 수 없습니다.";
 
-  const handleToggleVisibility = async () => {
-    try {
-      const newVisibility = !result.visibility;
-      await updateTestResultVisibility(result.id, newVisibility);
-      onUpdate(); // 부모 컴포넌트에서 결과 목록을 다시 불러오도록 요청
-    } catch (error) {
-      console.error("Visibility toggle failed:", error);
-      alert("Visibility toggle failed. Please try again.");
-    }
+  const onDelete = async () => {
+    await deleteTestResult(result.id);
   };
-
-  const handleDelete = async () => {
-    try {
-      await deleteTestResult(result.id);
-      onDelete(); // 부모 컴포넌트에서 결과 목록을 다시 불러오도록 요청
-    } catch (error) {
-      console.error("Delete failed:", error);
-      alert("Delete failed. Please try again.");
-    }
-  };
-
+  const onUpdate = async () => {};
   return (
-    <div className="p-6 bg-gray-800 rounded-lg shadow-lg text-white">
-      <div className="flex justify-between items-center border-b border-gray-700 pb-3 mb-3">
-        <h4 className="text-xl font-semibold">{result.nickname}</h4>
-        <p className="text-sm text-gray-400">{formattedDate}</p>
-      </div>
-      <p className="text-2xl font-bold text-yellow-400 mb-4">{result.result}</p>
-      <p className="text-base text-gray-300 mb-4">{description}</p>
-      {isOwner && (
-        <div className="flex justify-end space-x-4">
-          <button
-            onClick={handleToggleVisibility}
-            className="bg-blue-500 py-2 px-4 rounded-lg text-sm hover:bg-blue-600 transition"
-          >
-            {result.visibility ? "비공개로 전환" : "공개로 전환"}
-          </button>
-          <button
-            onClick={handleDelete}
-            className="bg-red-500 py-2 px-4 rounded-lg text-sm hover:bg-red-600 transition"
-          >
-            삭제
-          </button>
+    <>
+      <div
+        key={result.id}
+        className="border border-gray-300 rounded-lg w-4/5 m-auto p-4 mb-4"
+      >
+        <div className="flex justify-between items-center border-b-2 border-gray-300 mb-4 pb-2">
+          <h1 className="font-bold text-lg">{result.id}</h1>
+          <span className="mr-4 text-slate-400">{result.date}</span>
         </div>
-      )}
-    </div>
+        <div>
+          <h2 className="text-blue-600 font-bold text-2xl mb-4">
+            {result.result}
+          </h2>
+          <span>{description}</span>
+        </div>
+        {user.userId === result.id ? (
+          <div className="mt-4">
+            <button
+              onClick={onUpdate}
+              className=" bg-blue-200 w-1/4 rounded-lg mx-2 mb-4 h-10"
+            >
+              수정
+            </button>
+            <button
+              onClick={onDelete}
+              className=" bg-blue-200 w-1/4 rounded-lg mx-2 mb-4 h-10"
+            >
+              삭제
+            </button>
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </div>
+    </>
   );
 };
 
