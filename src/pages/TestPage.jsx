@@ -22,10 +22,10 @@ const TestPage = ({ user }) => {
     navigate("/results");
   };
   return (
-    <>
+    <div>
       <h1>MBTI 테스트</h1>
       <TestForm onSubmit={handleTestSubmit} />
-    </>
+    </div>
   );
 };
 

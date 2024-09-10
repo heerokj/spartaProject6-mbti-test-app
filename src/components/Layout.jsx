@@ -14,30 +14,45 @@ const Layout = ({ user, setUser }) => {
 
   return (
     <div>
-      <header>
-        <nav>
+      <header className="border-b-2 border-blue-200/50 ">
+        <nav className="flex justify-between items-center p-4 px-8 text-slate-500">
           <div>
-            <Link to="/">홈</Link>
+            <Link to="/" className="hover:text-blue-600">
+              홈
+            </Link>
           </div>
           <div>
             {user ? (
               <>
-                <Link to="/test">테스트</Link>
-                <Link to="/results">테스트결과</Link>
-                <Link to="/profile">프로필</Link>
-                <button onClick={handleLogout}>로그아웃</button>
+                <Link to="/test" className="mx-4 hover:text-blue-600">
+                  테스트
+                </Link>
+                <Link to="/results" className="mx-4 hover:text-blue-600">
+                  테스트결과
+                </Link>
+                <Link to="/profile" className="mx-4 hover:text-blue-600">
+                  프로필
+                </Link>
+                <button
+                  onClick={handleLogout}
+                  className="mx-4 hover:text-blue-600"
+                >
+                  로그아웃
+                </button>
               </>
             ) : (
               <>
-                <Link to="/login">로그인</Link>
-                <Link to="/signup">회원가입</Link>
+                <Link to="/login" className="mx-4 hover:text-blue-600">
+                  로그인
+                </Link>
+                <Link to="/signup" className="mx-4 hover:text-blue-600">
+                  회원가입
+                </Link>
               </>
             )}
           </div>
         </nav>
       </header>
-      {/* //? */}
-      <main className="container mx-auto pt-10 main"></main>
     </div>
   );
 };

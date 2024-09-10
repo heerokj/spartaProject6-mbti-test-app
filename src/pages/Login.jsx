@@ -23,14 +23,15 @@ const Login = ({ setUser }) => {
   };
   return (
     <>
-      <div>
-        <h1>로그인</h1>
+      <div className="bg-white h-96 w-96 m-auto text-center mt-10 rounded-md">
+        <h1 className="font-bold text-2xl pt-8">로그인</h1>
         <AuthForm mode="login" onSubmit={handleLogin} />
-        <div>
-          <p>
-            계정이 없으신가요? <Link to="/signup">회원가입</Link>
-          </p>
-        </div>
+        <p className="p-4 text-gray-600 bg-white rounded-md">
+          계정이 없으신가요?{" "}
+          <Link to="/signup" className="text-blue-600">
+            회원가입
+          </Link>
+        </p>
       </div>
     </>
   );
