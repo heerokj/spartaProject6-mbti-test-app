@@ -57,14 +57,6 @@ const TestResultPage = ({ user }) => {
               당신은 : {myResult[0].result}
             </h1>
             <span>{description}</span>
-            <button
-              onClick={() => {
-                navigate("/resultsList", { state: { result: results } }); //결과 리스트
-              }}
-              className="p-4 bg-blue-200 w-full rounded-lg mt-6 "
-            >
-              결과 리스트 페이지로 이동하기
-            </button>
           </>
         ) : (
           <div className="text-center">
@@ -72,6 +64,14 @@ const TestResultPage = ({ user }) => {
             <Link to="/test">테스트로 이동하기 👉 테스트</Link>
           </div>
         )}
+        <button
+          onClick={() => {
+            navigate("/resultsList", { state: { result: results } }); //결과 리스트
+          }}
+          className="p-4 bg-blue-200 w-full rounded-lg mt-6 "
+        >
+          결과 리스트 페이지로 이동하기
+        </button>
       </div>
     </div>
   );

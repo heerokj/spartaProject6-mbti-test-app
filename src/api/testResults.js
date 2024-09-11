@@ -20,6 +20,8 @@ export const createTestResult = async (resultData) => {
 
 export const deleteTestResult = async (id) => {
   const response = await axios.delete(`${API_URL}/${id}`);
+  console.log("response", response);
+
   return response;
 };
 
