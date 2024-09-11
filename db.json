@@ -26,6 +26,13 @@
       "date": "2024-09-09T15:19:13.595Z",
       "nickname": "나미",
       "result": "INFP",
+      "visibility": false
+    },
+    {
+      "id": "heerok",
+      "date": "2024-09-11T06:39:44.148Z",
+      "nickname": "히록",
+      "result": "INFP",
       "visibility": true
     }
   ]

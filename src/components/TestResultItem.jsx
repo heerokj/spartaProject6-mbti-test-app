@@ -20,6 +20,9 @@ const mbtiDescriptions = {
 };
 
 const TestResultItem = ({ result, user }) => {
+  //??
+  const isOwner = result.id === user.userId;
+  const formattedDate = new Date(result.date).toLocaleString();
   const description =
     mbtiDescriptions[result.result] || "MBTI 유형 설명을 찾을 수 없습니다.";
 
@@ -36,7 +39,7 @@ const TestResultItem = ({ result, user }) => {
       >
         <div className="flex justify-between items-center border-b-2 border-gray-300 mb-4 pb-2">
           <h1 className="font-bold text-lg">{result.id}</h1>
-          <span className="mr-4 text-slate-400">{result.date}</span>
+          <span className="mr-4 text-slate-400">{formattedDate}</span>
         </div>
         <div>
           <h2 className="text-blue-600 font-bold text-2xl mb-4">
