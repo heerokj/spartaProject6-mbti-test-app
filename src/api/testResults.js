@@ -1,14 +1,12 @@
-import axios from "axios";
-// https://relieved-uncovered-kingfisher.glitch.me
-const API_URL = "http://localhost:5000/testResults";
+import { baseTestInstance } from "../axiosInstance/base";
 
 export const getTestResults = async () => {
-  const response = await axios.get(`${API_URL}`);
+  const response = await baseTestInstance.get();
   return response.data;
 };
 
 export const createTestResult = async (resultData) => {
-  const response = await axios.post(`${API_URL}`, {
+  const response = await baseTestInstance.post({
     date: resultData.date,
     id: resultData.id,
     nickname: resultData.nickname,
@@ -19,7 +17,7 @@ export const createTestResult = async (resultData) => {
 };
 
 export const deleteTestResult = async (id) => {
-  const response = await axios.delete(`${API_URL}/${id}`);
+  const response = await baseTestInstance.delete(`/${id}`);
   console.log("response", response);
 
   return response;

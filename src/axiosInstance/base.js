@@ -1,7 +1,10 @@
 import axios from "axios";
 
-const baseInstance = axios.create({
+export const baseInstance = axios.create({
   baseURL: "https://moneyfulpublicpolicy.co.kr",
 });
 
-export default baseInstance;
+// https://relieved-uncovered-kingfisher.glitch.me
+export const baseTestInstance = axios.create({
+  baseURL: "http://localhost:5000/testResults",
+});
