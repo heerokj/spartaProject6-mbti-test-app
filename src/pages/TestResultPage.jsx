@@ -34,10 +34,6 @@ const TestResultPage = ({ user }) => {
   const myResult = results.filter((result) => {
     return result.id === user.userId;
   });
-  //TODO - 질문하기
-  //이런오류가 뜰때도 있고 안 뜰때도 있따.
-  //Cannot read properties of undefined (reading 'result')
-  // console.log(myResult);
 
   const description =
     mbtiDescriptions[myResult[0]?.result] ||

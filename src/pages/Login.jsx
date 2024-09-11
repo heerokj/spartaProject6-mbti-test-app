@@ -1,22 +1,25 @@
-import { useMutation } from "@tanstack/react-query";
+// import { useMutation } from "@tanstack/react-query";
 import AuthForm from "../components/AuthForm";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../api/auth";
+// import { login } from "../api/auth";
+import { useLogin } from "../hooks/mutations";
 
 const Login = ({ setUser }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const mutation = useMutation({
-    mutationFn: login,
-    onSuccess: (data) => {
-      setUser(data);
-      alert("로그인 되었습니다. 홈으로 이동합니다.");
-      navigate("/");
-    },
-    onError: (error) => {
-      return <div>오류입니다.. ${error}</div>;
-    },
-  });
+  // const mutation = useMutation({
+  //   mutationFn: login,
+  //   onSuccess: (data) => {
+  //     setUser(data);
+  //     alert("로그인 되었습니다. 홈으로 이동합니다.");
+  //     navigate("/");
+  //   },
+  //   onError: (error) => {
+  //     return <div>오류입니다.. ${error}</div>;
+  //   },
+  // });
+
+  const mutation = useLogin(setUser);
 
   const handleLogin = async (formData) => {
     mutation.mutate(formData);

@@ -5,7 +5,6 @@ import { calculateMBTI } from "../utils/mbtiCalculator";
 
 const TestPage = ({ user }) => {
   const { userId, nickname } = user;
-
   const navigate = useNavigate();
 
   const handleTestSubmit = async (answers) => {

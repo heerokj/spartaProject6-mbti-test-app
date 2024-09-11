@@ -1,4 +1,4 @@
-import baseInstance from "../axiosInstance/base";
+import { baseInstance } from "../axiosInstance/base";
 
 //회원가입
 export const register = async (userData) => {

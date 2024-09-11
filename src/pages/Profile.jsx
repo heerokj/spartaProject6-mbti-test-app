@@ -10,25 +10,17 @@ const Profile = ({ user, setUser }) => {
     setNickname(e.target.value);
   };
 
-  //NOTE - modifyNickname함수 전체적으로 다시 보기!!(비동기처리!!!)
-  //NOTE - async & await 적절히 활용하자
   const modifyNickname = async (e) => {
     e.preventDefault();
 
-    // 업데이트할 user 객체 생성
     const UpdatedUser = {
       ...user,
-      nickname: nickname, // 최신 nickname 값을 사용
+      nickname: nickname,
     };
-    //프로필 업데이트
+
     updateProfile(UpdatedUser);
-    //유저 상태 업데이트
     setUser(UpdatedUser);
   };
-
-  // useEffect(() => {
-  //   getUserProfile(user);
-  // }, [user]);
 
   return (
     <div>
